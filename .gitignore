@@ -1,4 +1,4 @@
-production.db
+data/production.db
 
 node_modules
 
