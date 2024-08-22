@@ -13,3 +13,10 @@
 <main>
 	<slot />
 </main>
+
+<style>
+	main {
+		margin: 0 auto;
+		max-width: 1400px;
+	}
+</style>
