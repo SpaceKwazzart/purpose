@@ -1,7 +1,11 @@
-<script lang="ts">
-    import Button from "$lib/shared/ui/Button.svelte";
-</script>
+<header></header>
 
-<Button onClick={() => {
-    alert("Meow!")
-}}/>
+<section></section>
+
+<section></section>
+
+<section></section>
+
+<footer></footer>
+
+<style></style>

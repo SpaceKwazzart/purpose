@@ -1,0 +1,54 @@
+:root {
+	font-size: 16px;
+
+	--bg: #f3fde8;
+	--primary: #a8df8e;
+	--primary-alt: #f3fde8;
+	--secondary: #ffe5e5;
+	--secondary-alt: #ffbfbf;
+
+	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+	--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+	--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+	--focus-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+
+	--text-color: #333;
+	--text-color-muted: #666;
+	--text-color-inverse: #fff;
+
+	--bg-light: #ffffff;
+	--bg-dark: #333333;
+	--bg-muted: #f0f0f0;
+
+	--radius: 1rem;
+	--radius-lg: 2rem;
+	--radius-sm: 0.5rem;
+
+	--text-tiny: 0.875rem;
+	--text-sm: 1rem;
+	--text-md: 1.125rem;
+	--text-lg: 1.25rem;
+	--text-xl: 1.5rem;
+	--text-2xl: 2rem;
+	--text-3xl: 2.5rem;
+
+	--line-height-tiny: 1.25rem;
+	--line-height-sm: 1.5rem;
+	--line-height-md: 1.75rem;
+	--line-height-lg: 2rem;
+	--line-height-xl: 2.25rem;
+	--line-height-2xl: 2.5rem;
+	--line-height-3xl: 3rem;
+
+	--font-weight-light: 300;
+	--font-weight-regular: 400;
+	--font-weight-semibold: 500;
+	--font-weight-bold: 700;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}

@@ -1,7 +1,7 @@
 import type { Handle } from '@sveltejs/kit';
 
 import { getDatabaseConection } from '$lib/shared/api/connection';
-import { initTables } from './routes/app/migrations/init-tables';
+import { initTables } from './app/migrations/init-tables';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	if (!event.locals.db) {
