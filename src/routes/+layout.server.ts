@@ -8,7 +8,6 @@ export async function load({ cookies }) {
 
 	let user: z.infer<typeof userSchema> | null;
 	if (token) {
-		// TODO: verify token
 		const data = verifyJwt(token);
 		user = userSchema.parse(data);
 	} else {

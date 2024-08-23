@@ -1,22 +1,12 @@
 <script lang="ts">
-	import { setContext } from 'svelte';
-	import { writable } from 'svelte/store';
 	import '../app/styles/globals.css';
+	import { createUserContext } from '../app/contexts/user';
 
-	export let data: any;
+	export let data;
 
-	const user = writable();
-	user.set(data.user);
-	setContext('user', user);
+	createUserContext(data.user);
 </script>
 
-<main>
+<main class="mx-auto max-w-[1400px] border">
 	<slot />
 </main>
-
-<style>
-	main {
-		margin: 0 auto;
-		max-width: 1400px;
-	}
-</style>
