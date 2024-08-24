@@ -7,6 +7,6 @@
 	createUserContext(data.user);
 </script>
 
-<main class="mx-auto max-w-[1400px] border">
+<main class="mx-auto max-w-[1400px]">
 	<slot />
 </main>

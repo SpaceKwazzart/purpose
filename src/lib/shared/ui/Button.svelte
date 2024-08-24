@@ -8,7 +8,7 @@
 	let clicked = false;
 
 	const buttonVars = cva(
-		'active:scale-95 transition-all inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent disabled:pointer-events-none disabled:opacity-50',
+		'active:scale-95 transition-all inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dark disabled:pointer-events-none disabled:opacity-30',
 		{
 			variants: {
 				color: {
@@ -24,18 +24,11 @@
 					ghost: 'bg-dark/0 hover:text-dark/90',
 					link: 'bg-black/0 hover:bg-black/0 border-none hover:underline',
 					light: 'bg-black/0 hover:bg-black/0 border-none'
-				},
-				size: {
-					default: 'h-9 px-4 py-2',
-					sm: 'h-8 rounded-md px-3 text-xs',
-					lg: 'h-10 rounded-md px-8',
-					icon: 'h-9 w-9'
 				}
 			},
 			defaultVariants: {
 				color: 'default',
-				variant: 'default',
-				size: 'default'
+				variant: 'default'
 			}
 		}
 	);
@@ -49,18 +42,31 @@
 		}, 300);
 	};
 
+	export let href: string | undefined = undefined;
+	export let type: 'submit' | 'reset' | 'button' | null | undefined = undefined;
 	export let variant: ButtonVars['variant'] = 'default';
 	export let color: ButtonVars['color'] = 'default';
-	export let size: ButtonVars['size'] = 'default';
 	export let disabled = false;
 	export let className: ClassValue[] | string = '';
 </script>
 
-<Button.Root
-	on:click
-	on:click={handleClicked}
-	{disabled}
-	class={mrg(buttonVars({ color, variant, size, className }))}
->
-	<slot>Commit action</slot>
-</Button.Root>
+{#if href}
+	<Button.Root
+		{href}
+		on:click
+		on:click={handleClicked}
+		class={mrg(buttonVars({ color, variant, className }))}
+	>
+		<slot>Goto {href}</slot>
+	</Button.Root>
+{:else}
+	<Button.Root
+		{type}
+		on:click
+		on:click={handleClicked}
+		{disabled}
+		class={mrg(buttonVars({ color, variant, className }))}
+	>
+		<slot>Commit action</slot>
+	</Button.Root>
+{/if}

@@ -1,3 +1,4 @@
+import { runQuery } from '$lib/shared/api/lib';
 import type { Database } from 'sqlite3';
 
 export function initTables(db: Database) {
@@ -21,7 +22,7 @@ function createUserTable(db: Database) {
 			photoUrl TEXT NULLABLE
 		)
 	`;
-	dbRun(db, query);
+	runQuery(db, query);
 }
 
 function createPurposeTable(db: Database) {
@@ -36,7 +37,7 @@ function createPurposeTable(db: Database) {
 			FOREIGN KEY (userId) REFERENCES user(id)
 		)
 	`;
-	dbRun(db, query);
+	runQuery(db, query);
 }
 
 function createTimeBucketTable(db: Database) {
@@ -50,7 +51,7 @@ function createTimeBucketTable(db: Database) {
 			FOREIGN KEY (purposeId) REFERENCES purpose(id)
 		)
 	`;
-	dbRun(db, query);
+	runQuery(db, query);
 }
 
 function createTimePointTable(db: Database) {
@@ -63,7 +64,7 @@ function createTimePointTable(db: Database) {
 			FOREIGN KEY (timeBucketId) REFERENCES timeBucket(id)
 		)
 	`;
-	dbRun(db, query);
+	runQuery(db, query);
 }
 
 function createTimeBucketPointTable(db: Database) {
@@ -76,13 +77,5 @@ function createTimeBucketPointTable(db: Database) {
 			FOREIGN KEY (timePointId) REFERENCES timePoint(id)
 		)
 	`;
-	dbRun(db, query);
-}
-
-function dbRun(db: Database, query: string) {
-	db.run(query, (err) => {
-		if (err) {
-			throw err;
-		}
-	});
+	runQuery(db, query);
 }
