@@ -3,7 +3,6 @@ import type { z } from 'zod';
 
 import { getUserByEmail } from '$lib/entities/user';
 import type { userSchema } from '$lib/shared/api/schemas.js';
-import { createUser } from '$lib/entities/user/api.js';
 import { generateJwt } from '../api/auth';
 
 export const actions = {
@@ -24,13 +23,10 @@ export const actions = {
 			console.error(error);
 			return fail(400, { message: 'Unexpected error' });
 		}
-		if (user) return fail(400, { message: 'User with this email already exists' });
+		if (!user) return fail(400, { message: 'User does not exist' });
 
-		await createUser(db, email, password);
-		const newUser = await getUserByEmail(db, email);
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		const { passwordHash, ...jwtData } = newUser;
-
+		const { passwordHash, ...jwtData } = user;
 		const jwt = generateJwt(jwtData);
 		cookies.set('token', jwt, { path: '/' });
 

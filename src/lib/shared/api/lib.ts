@@ -1,8 +1,17 @@
-import type { Database } from 'sqlite3';
+import type { Statement } from 'sqlite3';
 
-export function runQuery(db: Database, query: string, parameters: unknown[] = []) {
+export function runQuery(statement: Statement, parameters: unknown[] = []): Promise<number> {
 	return new Promise((resolve, reject) => {
-		db.get(query, parameters, (err, row) => {
+		statement.run(parameters, function (this, err) {
+			if (err) reject(err);
+			resolve(this.lastID);
+		});
+	});
+}
+
+export function runGetQuery(statement: Statement, parameters: unknown[] = []) {
+	return new Promise((resolve, reject) => {
+		statement.get(parameters, (err, row) => {
 			if (err) reject(err);
 			resolve(row || null);
 		});

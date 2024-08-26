@@ -17,8 +17,8 @@
 	"dependencies": {
 		"bcrypt": "^5.1.1",
 		"bits-ui": "^0.21.13",
+		"dotenv": "^16.4.5",
 		"jsonwebtoken": "^9.0.2",
-		"kysely": "^0.27.4",
 		"sqlite3": "^5.1.7",
 		"zod": "^3.23.8"
 	},

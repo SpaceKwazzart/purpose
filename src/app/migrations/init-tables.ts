@@ -10,7 +10,7 @@ export function initTables(db: Database) {
 }
 
 function createUserTable(db: Database) {
-	const query = `
+	const create = db.prepare(`
 		CREATE TABLE IF NOT EXISTS user (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
 			email TEXT UNIQUE,
@@ -21,12 +21,12 @@ function createUserTable(db: Database) {
 			displayName TEXT NULLABLE,
 			photoUrl TEXT NULLABLE
 		)
-	`;
-	runQuery(db, query);
+	`);
+	runQuery(create);
 }
 
 function createPurposeTable(db: Database) {
-	const query = `
+	const create = db.prepare(`
 		CREATE TABLE IF NOT EXISTS purpose (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
 			userId INTEGER,
@@ -36,26 +36,26 @@ function createPurposeTable(db: Database) {
 			hours FLOAT,
 			FOREIGN KEY (userId) REFERENCES user(id)
 		)
-	`;
-	runQuery(db, query);
+	`);
+	runQuery(create);
 }
 
 function createTimeBucketTable(db: Database) {
-	const query = `
+	const create = db.prepare(`
 		CREATE TABLE IF NOT EXISTS timeBucket (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
 			purposeId INTEGER,
 			name TEXT,
 			staticHours FLOAT,
-			dinamicHours FLOAT,
+			e FLOAT,
 			FOREIGN KEY (purposeId) REFERENCES purpose(id)
 		)
-	`;
-	runQuery(db, query);
+	`);
+	runQuery(create);
 }
 
 function createTimePointTable(db: Database) {
-	const query = `
+	const create = db.prepare(`
 		CREATE TABLE IF NOT EXISTS timePoint (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
 			timeBucketId INTEGER,
@@ -63,12 +63,12 @@ function createTimePointTable(db: Database) {
 			date DATE,
 			FOREIGN KEY (timeBucketId) REFERENCES timeBucket(id)
 		)
-	`;
-	runQuery(db, query);
+	`);
+	runQuery(create);
 }
 
 function createTimeBucketPointTable(db: Database) {
-	const query = `
+	const create = db.prepare(`
 		CREATE TABLE IF NOT EXISTS timeBucketPoint (
 			timeBucketId INTEGER,
 			timePointId INTEGER,
@@ -76,6 +76,6 @@ function createTimeBucketPointTable(db: Database) {
 			FOREIGN KEY (timeBucketId) REFERENCES timeBucket(id),
 			FOREIGN KEY (timePointId) REFERENCES timePoint(id)
 		)
-	`;
-	runQuery(db, query);
+	`);
+	runQuery(create);
 }

@@ -7,7 +7,7 @@ export function generateJwt(data: Record<string, unknown>, expiresIn = '24h') {
 	return sign(data, JWT_SECRET, { expiresIn });
 }
 
-export function verifyJwt(jwt: string): Record<string, unknown> | null {
+export function verifyJwt(jwt: string) {
 	try {
 		return verify(jwt, JWT_SECRET);
 	} catch (err) {
